@@ -1,16 +1,20 @@
 import http from "http";
-import app from "./app";
-import { environmentVariables } from "./config";
+import express from "express";
+import expressApp from "./app";
+import { PORT } from "./config";
 import { databaseConnection } from "./database/connection";
 
-const { PORT } = environmentVariables;
+const app = express();
 const server = http.createServer(app);
 
 const startServer = async () => {
-    await databaseConnection();
-    server.listen(PORT, () => {
-        console.log(`server started on ${PORT}`);
-    })
-}
+  await databaseConnection();
+
+  await expressApp(app);
+
+  server.listen(PORT, () => {
+    console.log(`server started on ${PORT}`);
+  });
+};
 
 startServer();

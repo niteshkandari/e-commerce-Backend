@@ -1,17 +1,20 @@
 import dotEnv from "dotenv";
 
-type variableType = {
-  PORT: string | undefined;
-  DB_URL: string | undefined;
-};
+declare const process : {
+  env: {
+    NODE_ENV: string,
+    PORT: string,
+    MONGODB_URI: string,
+    APP_SECRET: string
+  }
+}
 
 if (process.env.NODE_ENV !== "prod") {
-  dotEnv.config({override: true, path: '.env.dev'});
+  dotEnv.config({ override: true, path: ".env.dev" });
 } else {
-  dotEnv.config({override: true, path:".env.prod" });
+  dotEnv.config({ override: true, path: ".env.prod" });
 }
-export const environmentVariables: variableType = {
-  PORT: process.env.PORT,
-  DB_URL: process.env.MONGODB_URI,
-  // APP_SECRET: process.env.APP_SECRET
-};
+
+const { PORT, MONGODB_URI: DB_URL, APP_SECRET } = process.env;
+
+export { PORT, DB_URL, APP_SECRET };

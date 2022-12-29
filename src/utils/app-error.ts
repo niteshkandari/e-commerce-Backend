@@ -6,10 +6,11 @@ class AppError extends Error {
     public statusCode: number,
     public description: string,
     public isOperational: boolean,
-    public errorStack?: string,
+    public errorStack?: boolean,
     public logingErrorResponse?: string
   ) {
     super(description);
+    Object.setPrototypeOf(this,new.target.prototype);
     this.name = name;
     this.statusCode = statusCode;
     this.isOperational = isOperational;
@@ -19,6 +20,7 @@ class AppError extends Error {
   }
 }
 
+//api specific errors
 class ApiError extends AppError {
   constructor(
     name: string,
@@ -30,4 +32,10 @@ class ApiError extends AppError {
   }
 }
 
-export default { AppError, ApiError}; 
+class BadRequestError extends AppError {
+  constructor(description = 'Bad request',logingErrorResponse){
+      super('NOT FOUND', STATUS_CODES.BAD_REQUEST,description,true, false, logingErrorResponse);
+  }
+}
+
+export { AppError, ApiError, BadRequestError }; 

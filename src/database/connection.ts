@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
-import { environmentVariables } from "../config";
+import process from "process";
+import { DB_URL } from "../config";
 
-console.log(environmentVariables);
-const { DB_URL } = environmentVariables;
 export const databaseConnection =  async () => {
   try {
-    await mongoose.connect(DB_URL as string);
+    mongoose.set('strictQuery', false);
+    mongoose.connect(DB_URL);
     console.log("DB connection established");
   } catch (err) {
-    console.log('Error ============')
+    console.log('========== Error ============')
     console.log(err);
+    console.log('========== Error ============')
     process.exit(1);
   }
 }
