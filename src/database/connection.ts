@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { environmentVariables } from "../config";
 
+<<<<<<< HEAD
 console.log(environmentVariables);
 const { DB_URL } = environmentVariables;
 export const databaseConnection =  async () => {
@@ -13,3 +14,17 @@ export const databaseConnection =  async () => {
     process.exit(1);
   }
 }
+=======
+export const databaseConnection = async () => {
+  try {
+    mongoose.set("strictQuery", false);
+    await mongoose.connect(DB_URL);
+    console.log("MongoDB database connection established successfully");
+  } catch (err) {
+    console.log("========== Error ============");
+    console.log(err);
+    console.log("========== Error ============");
+    process.exit(1);
+  }
+};
+>>>>>>> 4d3dfd45cbfe172eca91947e63101892ea4c57f7
