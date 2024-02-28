@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 import { environmentVariables } from "../config";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 65aaa71 (added controllers)
 console.log(environmentVariables);
 const { DB_URL } = environmentVariables;
 export const databaseConnection =  async () => {
@@ -13,6 +16,7 @@ export const databaseConnection =  async () => {
     console.log(err);
     process.exit(1);
   }
+<<<<<<< HEAD
 }
 =======
 export const databaseConnection = async () => {
@@ -28,3 +32,6 @@ export const databaseConnection = async () => {
   }
 };
 >>>>>>> 4d3dfd45cbfe172eca91947e63101892ea4c57f7
+=======
+}
+>>>>>>> parent of 65aaa71 (added controllers)

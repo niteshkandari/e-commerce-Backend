@@ -14,6 +14,7 @@ const startServer = async () => {
     })
 }
 
+<<<<<<< HEAD
 startServer();
 =======
 import express from "express";
@@ -41,3 +42,6 @@ startServer()
     await prisma.$disconnect();
   });
 >>>>>>> 4d3dfd45cbfe172eca91947e63101892ea4c57f7
+=======
+startServer();
+>>>>>>> parent of 65aaa71 (added controllers)

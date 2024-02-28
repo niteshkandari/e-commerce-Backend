@@ -22,6 +22,9 @@
   "homepage": "https://github.com/niteshkandari/e-commerce-Backend#readme",
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 65aaa71 (added controllers)
     "express": "^4.18.2",
     "mongoose": "^6.8.0"
   },
