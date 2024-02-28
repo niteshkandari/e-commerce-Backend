@@ -4,17 +4,17 @@ declare const process : {
   env: {
     NODE_ENV: string,
     PORT: string,
-    MONGODB_URI: string,
+    DATABASE_URL: string,
     APP_SECRET: string
   }
 }
 
 if (process.env.NODE_ENV !== "prod") {
-  dotEnv.config({ override: true, path: ".env.dev" });
+  dotEnv.config({ override: true, path: ".env" });
 } else {
   dotEnv.config({ override: true, path: ".env.prod" });
 }
 
-const { PORT, MONGODB_URI: DB_URL, APP_SECRET } = process.env;
+const { PORT, DATABASE_URL, APP_SECRET } = process.env;
 
-export { PORT, DB_URL, APP_SECRET };
+export { PORT, DATABASE_URL, APP_SECRET };

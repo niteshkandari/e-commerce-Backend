@@ -1,20 +1,24 @@
-import http from "http";
 import express from "express";
 import expressApp from "./app";
 import { PORT } from "./config";
-import { databaseConnection } from "./database/connection";
+import prisma from "./prismaClient";
 
 const app = express();
-const server = http.createServer(app);
 
 const startServer = async () => {
-  await databaseConnection();
-
+  await prisma.$connect();
   await expressApp(app);
-
-  server.listen(PORT, () => {
-    console.log(`server started on ${PORT}`);
+  app.listen(PORT, () => {
+    console.log("Db connection established");
+    console.log(`Server is running on port ${PORT}`);
   });
 };
 
-startServer();
+startServer()
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
